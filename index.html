@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="tab-icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css"> <!-- Подключение наших стилей-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="script.js"></script> <!-- Подключение наших скриптов -->
+
+    <title>Журнал оценок</title>
+</head>
+
+<body style="background-color: #e8d3c4;">
+    <div class=" tab-container">
+        <button class="tab-button " onclick="openTab(event, 'Tab1')">Загрузка</button>
+        <button class="tab-button" onclick="openTab(event, 'Tab2')">Создание и редактирование</button>
+        <button class="tab-button" onclick="openTab(event, 'Tab3')">Вывод в виде таблицы</button>
+        <button class="tab-button" onclick="openTab(event, 'Tab4')">Вывод в виде графика</button>
+        <button class="tab-button" onclick="openTab(event, 'Tab5')">Помощь</button>
+        <button class="tab-button" onclick="openTab(event, 'Tab6')">О программе</button>
+
+        <div id="Tab1" class="tab-content ">
+            <h4>Вкладка для загрузки оценок из файла формата .csv</h4>
+            <p>
+            <h2>Загрузите файл на страницу</h2>
+            <input type="file" id="fileUpload" accept=".csv, .txt, .xlsx">
+            <button onclick="uploadFile()">Загрузить файл</button>
+            </p>
+            <h2>Содержимое файла</h2>
+            <table id="uploadedTable">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>class</th>
+                        <th>informatics</th>
+                        <th>physics</th>
+                        <th>mathemathics</th>
+                        <th>literature</th>
+                        <th>music</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="Tab2" class="tab-content">
+            <h4>Вкладка для создания или редактирования журнала и сохранения в файл</h4>
+            <p>
+            <h2>Сохранить таблицу</h2>
+            <button id="saveOnFile">Сохранить</button>
+            <h2>Поля для ввода</h2>
+            <form id="addRowForm">
+                <input type="text" id="name" placeholder="name" required>
+                <input type="text" id="class" placeholder="class">
+                <input type="text" id="informatics" placeholder="informatics" required>
+                <input type="text" id="physics" placeholder="physics" required>
+                <input type="text" id="mathemathics" placeholder="mathemathics" required>
+                <input type="text" id="literature" placeholder="literature" required>
+                <input type="text" id="music" placeholder="music" required>
+                <button type="submit">Добавить</button>
+            </form>
+            <h2>Содержимое файла</h2>
+            <table id="uploadedTable">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>class</th>
+                        <th>informatics</th>
+                        <th>physics</th>
+                        <th>mathemathics</th>
+                        <th>literature</th>
+                        <th>music</th>
+                        <th>Удаление</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            </p>
+        </div>
+
+        <div id="Tab3" class="tab-content">
+            <h4>Вкладка для вывода статистики в табличном виде</h4>
+            <hr>
+            <h4>Статистика по классам </h4>
+            <table id="statisticsTable">
+            </table>
+            <h4>Статистика по ученикам </h4>
+            <table id="studentsStatisticsTable">
+            </table>
+        </div>
+
+        <div id="Tab4" class="tab-content">
+            <hr>
+            <h1>Вкладка для вывода статистики в виде графиков</h1>
+            <canvas id="chart-average"></canvas>
+            <canvas id="chart-median"></canvas>
+            <canvas id="studentGradesChart"></canvas>
+        </div>
+
+        <div id="Tab5" class="tab-content">
+            <h4>Вкладка помощь</h4>
+            <p>
+            <h4> Предназначение: </h4>
+            <div class="column">
+                <p>Помощь к вкладки для загрузки оценок из файла формата .csv</p>
+                <p>Помощь к вкладки для создания или редактирования журнала и сохранения в файл</p>
+                <p>Помощь к вкладки для вывода статистики в табличном виде</p>
+                <p>Помощь к вкладки для вывода статистики в графическом виде</p>
+                <p>Помощь к вкладки помощь</p>
+                <p>Помощь к вкладки о программе</p>
+                </p>
+            </div>
+        </div>
+
+        <div id="Tab6" class="tab-content">
+            <h4>Вкладка о программе</h4>
+            <p>
+            <h4> О разработчике:</h4>
+            <div class="column">
+                <p> Кокорева Дарья Сергеевна</p>
+                <p>Студент группы АБ-107</p>
+                <p>Иститут СибГУТИ</p>
+                <p>Email: kokorevadara2003@gmail.com</p>
+                <p>Фотография :</p>
+                <img src="avatar.jpg" alt="Моя фотография" width="300" height="300">
+                </p>
+            </div>
+        </div>
+</body>
+
+</html>
